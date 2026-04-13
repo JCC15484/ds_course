@@ -10,7 +10,7 @@ const Community = () => {
       id: '1',
       title: '如何使用Pandas进行数据清洗？',
       author: '李明',
-      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20male%20student%20avatar&image_size=square',
+      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=pixel%20art%20young%20male%20student%20avatar%208-bit%20style&image_size=square',
       category: '技术讨论',
       replies: 12,
       views: 156,
@@ -21,7 +21,7 @@ const Community = () => {
       id: '2',
       title: '机器学习模型选择指南',
       author: '王芳',
-      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20female%20student%20avatar&image_size=square',
+      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=pixel%20art%20young%20female%20student%20avatar%208-bit%20style&image_size=square',
       category: '机器学习',
       replies: 8,
       views: 98,
@@ -32,7 +32,7 @@ const Community = () => {
       id: '3',
       title: '商务数据分析案例分享',
       author: '张伟',
-      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=middle%20age%20male%20student%20avatar&image_size=square',
+      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=pixel%20art%20middle%20age%20male%20student%20avatar%208-bit%20style&image_size=square',
       category: '商务分析',
       replies: 15,
       views: 203,
@@ -47,7 +47,7 @@ const Community = () => {
       id: '1',
       title: 'Python中如何实现数据可视化？',
       author: '赵强',
-      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20male%20student%20avatar&image_size=square',
+      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=pixel%20art%20young%20male%20student%20avatar%208-bit%20style&image_size=square',
       category: '技术问答',
       answers: 5,
       views: 124,
@@ -58,7 +58,7 @@ const Community = () => {
       id: '2',
       title: '如何处理大数据集？',
       author: '刘静',
-      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20female%20student%20avatar&image_size=square',
+      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=pixel%20art%20young%20female%20student%20avatar%208-bit%20style&image_size=square',
       category: '技术问答',
       answers: 3,
       views: 76,
@@ -69,7 +69,7 @@ const Community = () => {
       id: '3',
       title: '数据分析职业发展路径',
       author: '陈波',
-      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=middle%20age%20male%20student%20avatar&image_size=square',
+      avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=pixel%20art%20middle%20age%20male%20student%20avatar%208-bit%20style&image_size=square',
       category: '职业规划',
       answers: 7,
       views: 189,
@@ -92,15 +92,15 @@ const Community = () => {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-[#1a365d] mb-4">社区论坛</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+        <div className="text-center mb-12 animate-pixel-fade-in">
+          <h1 className="text-3xl font-bold text-[#1a365d] mb-4 font-pixel">社区论坛</h1>
+          <p className="text-gray-600 max-w-2xl mx-auto font-pixel text-sm">
             与其他学习者交流，分享知识和经验
           </p>
         </div>
 
         {/* 搜索和标签页 */}
-        <div className="mb-8">
+        <div className="mb-8 animate-pixel-fade-in">
           <div className="flex flex-col md:flex-row gap-4 mb-4">
             <div className="flex-grow">
               <div className="relative">
@@ -109,24 +109,24 @@ const Community = () => {
                   placeholder="搜索帖子..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4299e1]"
+                  className="w-full px-4 py-2 border-2 border-[#1a365d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#ed8936] font-pixel text-sm"
                 />
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
             </div>
-            <button className="px-4 py-2 bg-[#4299e1] text-white rounded-md hover:bg-[#3182ce] transition-colors">
+            <button className="px-4 py-2 bg-[#4299e1] border-2 border-[#1a365d] text-white rounded-md hover:bg-[#3182ce] transition-colors font-pixel text-xs animate-pixel-bounce">
               发布新帖
             </button>
           </div>
 
           {/* 标签页 */}
-          <div className="border-b border-gray-200">
+          <div className="border-b-4 border-[#1a365d]">
             <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="community-tabs" role="tablist">
               <li className="mr-2" role="presentation">
                 <button
-                  className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'discussions' ? 'border-[#4299e1] text-[#4299e1]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'}`}
+                  className={`inline-block p-4 border-b-4 rounded-t-lg ${activeTab === 'discussions' ? 'border-[#ed8936] text-[#ed8936]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'} font-pixel`}
                   onClick={() => setActiveTab('discussions')}
                 >
                   讨论区
@@ -134,7 +134,7 @@ const Community = () => {
               </li>
               <li role="presentation">
                 <button
-                  className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'questions' ? 'border-[#4299e1] text-[#4299e1]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'}`}
+                  className={`inline-block p-4 border-b-4 rounded-t-lg ${activeTab === 'questions' ? 'border-[#ed8936] text-[#ed8936]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'} font-pixel`}
                   onClick={() => setActiveTab('questions')}
                 >
                   问答区
@@ -149,23 +149,23 @@ const Community = () => {
           {/* 讨论区 */}
           {activeTab === 'discussions' && (
             <div className="space-y-4">
-              {filteredDiscussions.map((discussion) => (
-                <div key={discussion.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+              {filteredDiscussions.map((discussion, index) => (
+                <div key={discussion.id} className="bg-white rounded-md border-4 border-[#1a365d] shadow-md p-6 hover:shadow-lg transition-shadow animate-pixel-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
                   <div className="flex items-start">
                     <img 
                       src={discussion.avatar} 
                       alt={discussion.author} 
-                      className="w-12 h-12 rounded-full object-cover mr-4"
+                      className="w-12 h-12 rounded-md border-2 border-[#1a365d] object-cover mr-4"
                     />
                     <div className="flex-grow">
                       <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-xl font-bold text-[#1a365d]">{discussion.title}</h3>
-                        <span className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                        <h3 className="text-lg font-bold text-[#1a365d] font-pixel">{discussion.title}</h3>
+                        <span className="px-2 py-1 text-xs font-pixel rounded-md bg-blue-100 text-blue-800 border-2 border-blue-800">
                           {discussion.category}
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-4">{discussion.content}</p>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <p className="text-gray-600 mb-4 font-pixel text-sm leading-relaxed">{discussion.content}</p>
+                      <div className="flex items-center text-xs text-gray-500 font-pixel">
                         <span className="mr-4">作者: {discussion.author}</span>
                         <span className="mr-4">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -187,8 +187,8 @@ const Community = () => {
               ))}
 
               {filteredDiscussions.length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-gray-600">没有找到匹配的讨论</p>
+                <div className="text-center py-12 animate-pixel-fade-in">
+                  <p className="text-gray-600 font-pixel">没有找到匹配的讨论</p>
                 </div>
               )}
             </div>
@@ -197,23 +197,23 @@ const Community = () => {
           {/* 问答区 */}
           {activeTab === 'questions' && (
             <div className="space-y-4">
-              {filteredQuestions.map((question) => (
-                <div key={question.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+              {filteredQuestions.map((question, index) => (
+                <div key={question.id} className="bg-white rounded-md border-4 border-[#1a365d] shadow-md p-6 hover:shadow-lg transition-shadow animate-pixel-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
                   <div className="flex items-start">
                     <img 
                       src={question.avatar} 
                       alt={question.author} 
-                      className="w-12 h-12 rounded-full object-cover mr-4"
+                      className="w-12 h-12 rounded-md border-2 border-[#1a365d] object-cover mr-4"
                     />
                     <div className="flex-grow">
                       <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-xl font-bold text-[#1a365d]">{question.title}</h3>
-                        <span className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                        <h3 className="text-lg font-bold text-[#1a365d] font-pixel">{question.title}</h3>
+                        <span className="px-2 py-1 text-xs font-pixel rounded-md bg-green-100 text-green-800 border-2 border-green-800">
                           {question.category}
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-4">{question.content}</p>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <p className="text-gray-600 mb-4 font-pixel text-sm leading-relaxed">{question.content}</p>
+                      <div className="flex items-center text-xs text-gray-500 font-pixel">
                         <span className="mr-4">作者: {question.author}</span>
                         <span className="mr-4">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -235,8 +235,8 @@ const Community = () => {
               ))}
 
               {filteredQuestions.length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-gray-600">没有找到匹配的问题</p>
+                <div className="text-center py-12 animate-pixel-fade-in">
+                  <p className="text-gray-600 font-pixel">没有找到匹配的问题</p>
                 </div>
               )}
             </div>

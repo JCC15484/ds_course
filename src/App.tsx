@@ -7,6 +7,7 @@ import Practice from './pages/Practice';
 import Community from './pages/Community';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
+import SqlLearning from './pages/SqlLearning';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/community" element={<Community />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/sql-learning" element={<SqlLearning />} />
           </Routes>
         </main>
         <Footer />
