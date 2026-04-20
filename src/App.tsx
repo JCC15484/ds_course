@@ -8,6 +8,7 @@ import Community from './pages/Community';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import SqlLearning from './pages/SqlLearning';
+import PandasTraining from './pages/PandasTraining';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/sql-learning" element={<SqlLearning />} />
+            <Route path="/pandas-training" element={<PandasTraining />} />
           </Routes>
         </main>
         <Footer />

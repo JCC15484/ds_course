@@ -33,6 +33,7 @@ const Navbar = () => {
             <Link to="/courses" className="hover:text-[#ed8936] transition-colors font-pixel text-sm hover:scale-105 transition-transform">课程</Link>
             <Link to="/learning-center" className="hover:text-[#ed8936] transition-colors font-pixel text-sm hover:scale-105 transition-transform">学习中心</Link>
             <Link to="/sql-learning" className="hover:text-[#ed8936] transition-colors font-pixel text-sm hover:scale-105 transition-transform">SQL学习</Link>
+            <Link to="/pandas-training" className="hover:text-[#ed8936] transition-colors font-pixel text-sm hover:scale-105 transition-transform">Pandas训练</Link>
             <Link to="/practice" className="hover:text-[#ed8936] transition-colors font-pixel text-sm hover:scale-105 transition-transform">实践环境</Link>
             <Link to="/community" className="hover:text-[#ed8936] transition-colors font-pixel text-sm hover:scale-105 transition-transform">社区</Link>
           </nav>
@@ -75,6 +76,7 @@ const Navbar = () => {
             <Link to="/courses" className="block hover:text-[#ed8936] transition-colors font-pixel">课程</Link>
             <Link to="/learning-center" className="block hover:text-[#ed8936] transition-colors font-pixel">学习中心</Link>
             <Link to="/sql-learning" className="block hover:text-[#ed8936] transition-colors font-pixel">SQL学习</Link>
+            <Link to="/pandas-training" className="block hover:text-[#ed8936] transition-colors font-pixel">Pandas训练</Link>
             <Link to="/practice" className="block hover:text-[#ed8936] transition-colors font-pixel">实践环境</Link>
             <Link to="/community" className="block hover:text-[#ed8936] transition-colors font-pixel">社区</Link>
             <div className="flex space-x-4 pt-2">
