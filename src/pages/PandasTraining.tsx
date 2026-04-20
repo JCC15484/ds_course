@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const PandasTraining = () => {
   const [activeLevel, setActiveLevel] = useState(1)
@@ -303,11 +304,12 @@ const PandasTraining = () => {
                       </div>
 
                       {/* 开始练习按钮 */}
-                      <button
-                        className="w-full py-4 bg-[#ed8936] text-white border-2 border-[#1a365d] rounded-md font-pixel text-sm hover:bg-[#d69e4f] transition-colors animate-pixel-bounce"
+                      <Link
+                        to="/practice"
+                        className="block w-full py-4 bg-[#ed8936] text-white border-2 border-[#1a365d] rounded-md font-pixel text-sm hover:bg-[#d69e4f] transition-colors animate-pixel-bounce text-center"
                       >
-                        🚀 开始实践
-                      </button>
+                        🚀 前往实践环境练习
+                      </Link>
                     </div>
                   </div>
                 )}
