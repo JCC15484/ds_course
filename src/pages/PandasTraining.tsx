@@ -1856,6 +1856,7 @@ for col in df.columns:
                     <PracticeEditor 
                       initialCode={project.initialCode}
                       title={`项目 ${project.id}: ${project.title}`}
+                      answer={project.initialCode}
                     />
                   </div>
                 </div>

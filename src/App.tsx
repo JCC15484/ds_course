@@ -1,34 +1,36 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
-import LearningCenter from './pages/LearningCenter';
 import Practice from './pages/Practice';
-import Community from './pages/Community';
+import Projects from './pages/Projects';
+import LearningPath from './pages/LearningPath';
 import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import Admin from './pages/Admin';
-import SqlLearning from './pages/SqlLearning';
-import PandasTraining from './pages/PandasTraining';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
         <Navbar />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:id" element={<CourseDetail />} />
-            <Route path="/learning-center" element={<LearningCenter />} />
             <Route path="/practice" element={<Practice />} />
-            <Route path="/community" element={<Community />} />
+            <Route path="/practice/:id" element={<Practice />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<Projects />} />
+            <Route path="/learning-path" element={<LearningPath />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/sql-learning" element={<SqlLearning />} />
-            <Route path="/pandas-training" element={<PandasTraining />} />
           </Routes>
         </main>
         <Footer />
