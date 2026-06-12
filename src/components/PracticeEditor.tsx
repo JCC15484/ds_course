@@ -199,7 +199,6 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
       pyodide.setStderr({ batched: () => {} });
 
     } catch (err: any) {
-      execError = err?.message || String(err);
       // 清理错误 - 尝试恢复默认 stdout
       try {
         if (pyodideRef.current) {
@@ -209,6 +208,18 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
       } catch (e) {
         // ignore
       }
+      
+      // 改进错误信息显示
+      let errorMsg = err?.message || String(err);
+      
+      // 清理 Python 错误信息中的特殊字符和冗余内容
+      errorMsg = errorMsg
+        .replace(/File "<exec>", /g, '')
+        .replace(/File ".*?", line (\d+)/g, '第$1行')
+        .replace(/\n\n/g, '\n')
+        .trim();
+      
+      execError = errorMsg;
     }
 
     return {
@@ -241,9 +252,30 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
 
       if (result.error) {
         // 格式化错误信息，让用户更容易理解
-        finalOutput = `❌ 执行错误：\n${result.error}\n\n`;
-        finalOutput += `提示：请检查你的代码语法、变量名、缩进等。\n`;
-        finalOutput += `可以点击"查看答案"参考正确写法。\n`;
+        let errorHint = '';
+        const errorLower = result.error.toLowerCase();
+        
+        if (errorLower.includes('syntaxerror')) {
+          errorHint = '语法错误：请检查括号、引号、逗号等是否匹配';
+        } else if (errorLower.includes('nameerror')) {
+          errorHint = '名称错误：变量或函数名可能拼写错误或未定义';
+        } else if (errorLower.includes('typeerror')) {
+          errorHint = '类型错误：数据类型不匹配，例如字符串和数字不能直接相加';
+        } else if (errorLower.includes('indexerror')) {
+          errorHint = '索引错误：列表或数组的索引超出了范围';
+        } else if (errorLower.includes('attributeerror')) {
+          errorHint = '属性错误：对象没有这个属性或方法，请检查方法名是否正确';
+        } else if (errorLower.includes('indentationerror')) {
+          errorHint = '缩进错误：Python靠缩进区分代码块，请检查空格或Tab是否一致';
+        } else {
+          errorHint = '请检查代码语法、变量名、缩进等是否正确';
+        }
+        
+        finalOutput = `❌ 执行错误：\n${result.error}\n\n💡 ${errorHint}\n`;
+        
+        if (answer) {
+          finalOutput += `可以点击"查看答案"参考正确写法。\n`;
+        }
       } else {
         if (result.stdout) {
           finalOutput += result.stdout;
@@ -333,9 +365,14 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
           setValidateResult({
             passed: false,
             message:
-              '❌ 验证未通过。在输出中未能找到以下预期内容：\n' +
-              failedExpects.map((e) => '  • ' + e).join('\n') +
-              '\n\n提示：检查代码逻辑，或点击"查看答案"参考正确写法。',
+              '❌ 验证未通过！你的输出与预期不符。\n\n' +
+              '📋 预期输出应包含：\n' +
+              failedExpects.map((e) => '   • ' + e).join('\n') +
+              '\n\n💡 请检查：\n' +
+              '   • 你的代码输出内容是否正确\n' +
+              '   • 是否有额外的空格或换行\n' +
+              '   • 中英文标点是否一致\n' +
+              (answer ? '\n📝 点击"查看答案"参考正确写法' : ''),
           });
           onFailed?.();
         }
