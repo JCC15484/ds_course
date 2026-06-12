@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { projects } from '../data/projects';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const banners = [
@@ -148,11 +150,15 @@ const Home = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {learningPath.map((step, index) => (
-              <div key={index} className="group relative">
+              <div
+                key={index}
+                onClick={() => navigate(`/practice/${index + 1}`)}
+                className="group relative cursor-pointer"
+              >
                 <div className={`bg-gradient-to-br ${step.color} rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1`}>
                   <div className="text-4xl mb-3">{step.icon}</div>
                   <div className="font-semibold text-sm">{step.name}</div>
-                  <div className="text-xs opacity-75 mt-1">点击开始学习</div>
+                  <div className="text-xs opacity-75 mt-1">点击进入练习 →</div>
                 </div>
                 {index < learningPath.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-gray-400">
@@ -250,8 +256,67 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 平台功能介绍 */}
+      {/* 实战项目案例 */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1a365d] dark:text-white mb-4">
+            💼 实战项目案例
+          </h2>
+          <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+            从入门到进阶，完整的 Pandas 数据分析实战项目，含分步骤教学和在线代码编辑器
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {projects.slice(0, 6).map((project) => (
+              <Link
+                key={project.id}
+                to={`/projects/${project.id}`}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
+              >
+                <div className={`bg-gradient-to-br ${project.color} p-5 text-white`}>
+                  <div className="flex justify-between items-start">
+                    <div className="text-4xl">{project.icon}</div>
+                    <div className="flex flex-col gap-2 items-end">
+                      <span className="px-2 py-1 bg-white/20 rounded-full text-xs font-medium">
+                        {project.difficulty}
+                      </span>
+                      <span className="px-2 py-1 bg-white/20 rounded-full text-xs font-medium">
+                        {project.duration}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-[#1a365d] dark:text-white mb-2 text-base">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                    {project.description}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {project.steps.length} 个步骤
+                    </span>
+                    <span className="text-xs text-[#4299e1] font-medium">开始学习 →</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/projects"
+              className="inline-block px-8 py-3 bg-[#4299e1] hover:bg-[#2c5282] text-white rounded-lg font-semibold transition-colors"
+            >
+              查看全部 {projects.length} 个项目 →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 平台功能介绍 */}
+      <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1a365d] dark:text-white mb-4">
             ✨ 平台功能

@@ -6,6 +6,7 @@ import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import Practice from './pages/Practice';
 import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 import LearningPath from './pages/LearningPath';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
@@ -25,7 +26,7 @@ function App() {
             <Route path="/practice" element={<Practice />} />
             <Route path="/practice/:id" element={<Practice />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:id" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/learning-path" element={<LearningPath />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
