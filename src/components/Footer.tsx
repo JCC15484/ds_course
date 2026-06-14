@@ -19,6 +19,8 @@ const Footer = () => {
               <li><a href="/courses" className="hover:text-[#ed8936] transition-colors hover:scale-105 transition-transform">课程</a></li>
               <li><a href="/learning-center" className="hover:text-[#ed8936] transition-colors hover:scale-105 transition-transform">学习中心</a></li>
               <li><a href="/practice" className="hover:text-[#ed8936] transition-colors hover:scale-105 transition-transform">实践环境</a></li>
+              <li><a href="/pandas-training" className="hover:text-[#ed8936] transition-colors hover:scale-105 transition-transform">Pandas实训</a></li>
+              <li><a href="/sql-learning" className="hover:text-[#ed8936] transition-colors hover:scale-105 transition-transform">SQL学习</a></li>
               <li><a href="/community" className="hover:text-[#ed8936] transition-colors hover:scale-105 transition-transform">社区</a></li>
             </ul>
           </div>
@@ -57,6 +59,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t-2 border-gray-700 mt-8 pt-6 text-center text-xs text-gray-400 font-pixel">
+          <div className="mb-3">
+            <p className="text-gray-300 mb-1">📅 内容每月更新 · 案例数据截止至 2026 年 · 长期维护</p>
+            <p className="text-gray-400">最近更新：2026年6月 | 反馈建议：<a href="mailto:contact@pydata-edu.com" className="underline hover:text-[#ed8936]">contact@pydata-edu.com</a></p>
+          </div>
           <p>© 2026 数据分析教育平台. 保留所有权利.</p>
         </div>
       </div>

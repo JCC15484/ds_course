@@ -24,13 +24,15 @@ const Home = () => {
     }
   ];
 
+  const [showDemoOutput, setShowDemoOutput] = useState(false);
+
   const learningPath = [
-    { name: 'Python基础', icon: '🐍', progress: 0, color: 'from-green-400 to-green-600' },
-    { name: 'NumPy数值计算', icon: '🔢', progress: 0, color: 'from-blue-400 to-blue-600' },
-    { name: 'Pandas数据处理', icon: '📊', progress: 0, color: 'from-purple-400 to-purple-600' },
-    { name: '数据清洗整理', icon: '🧹', progress: 0, color: 'from-orange-400 to-orange-600' },
-    { name: 'Matplotlib可视化', icon: '📈', progress: 0, color: 'from-pink-400 to-pink-600' },
-    { name: '数据分析实战', icon: '💼', progress: 0, color: 'from-indigo-400 to-indigo-600' }
+    { name: 'Python基础', icon: '🐍', progress: 0, color: 'from-green-400 to-green-600', detail: '20+ 知识点，50+ 选择题，10+ 实操题' },
+    { name: 'NumPy数值计算', icon: '🔢', progress: 0, color: 'from-blue-400 to-blue-600', detail: '15+ 知识点，30+ 选择题，5+ 实操题' },
+    { name: 'Pandas数据处理', icon: '📊', progress: 0, color: 'from-purple-400 to-purple-600', detail: '25+ 知识点，40+ 选择题，8+ 实操题' },
+    { name: '数据清洗整理', icon: '🧹', progress: 0, color: 'from-orange-400 to-orange-600', detail: '12+ 知识点，25+ 选择题，6+ 实操题' },
+    { name: 'Matplotlib可视化', icon: '📈', progress: 0, color: 'from-pink-400 to-pink-600', detail: '18+ 知识点，30+ 选择题，7+ 实操题' },
+    { name: '数据分析实战', icon: '💼', progress: 0, color: 'from-indigo-400 to-indigo-600', detail: '6 个完整实战项目，综合训练' }
   ];
 
   const popularCourses = [
@@ -159,6 +161,9 @@ const Home = () => {
                   <div className="text-4xl mb-3">{step.icon}</div>
                   <div className="font-semibold text-sm">{step.name}</div>
                   <div className="text-xs opacity-75 mt-1">点击进入练习 →</div>
+                </div>
+                <div className="text-center text-xs text-gray-500 dark:text-gray-400 mt-2 px-2">
+                  {step.detail}
                 </div>
                 {index < learningPath.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-gray-400">
@@ -336,6 +341,133 @@ const Home = () => {
                 <p className="text-sm text-gray-600 dark:text-gray-400">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 修改 1：在线体验示例区域 */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1a365d] dark:text-white mb-4">
+            ✨ 即刻体验：浏览器内运行 Python
+          </h2>
+          <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+            无需安装任何软件，真实在线编程环境即将开放。点击下方按钮预览效果。
+          </p>
+
+          <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            {/* 代码区域 */}
+            <div className="bg-gray-900 rounded-lg p-4 mb-4 font-mono text-sm">
+              <div className="flex items-center gap-2 mb-3 pb-2 border-b border-gray-700">
+                <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+                <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
+                <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+                <span className="ml-2 text-gray-400 text-xs">demo.py</span>
+              </div>
+              <div className="text-gray-300">
+                <span className="text-purple-400">print</span>
+                <span className="text-gray-200">(</span>
+                <span className="text-green-300">"Hello, 数据分析!"</span>
+                <span className="text-gray-200">)</span>
+              </div>
+            </div>
+
+            {/* 运行按钮 */}
+            <div className="text-center mb-4">
+              <button
+                onClick={() => setShowDemoOutput(true)}
+                title="即将开放"
+                className="px-6 py-3 bg-[#4299e1] hover:bg-[#2c5282] text-white rounded-lg font-semibold transition-colors shadow-md"
+                style={{ cursor: 'pointer' }}
+              >
+                ▶ 点击运行示例
+              </button>
+            </div>
+
+            {/* 输出区域 */}
+            <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 border-l-4 border-[#4299e1]">
+              <div className="text-xs text-gray-500 dark:text-gray-400 mb-2 font-semibold">
+                [输出结果]
+              </div>
+              <div className="font-mono text-sm text-[#1a365d] dark:text-white">
+                {showDemoOutput ? 'Hello, 数据分析!' : '（点击"运行示例"按钮预览输出）'}
+              </div>
+            </div>
+
+            <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
+              💡 这是演示效果，进入平台后可体验真实的在线代码编辑器
+            </p>
+          </div>
+
+          {/* 课程统计卡片 */}
+          <div className="max-w-3xl mx-auto mt-8 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+            <h3 className="text-xl font-bold text-center text-[#1a365d] dark:text-white mb-6">
+              📊 课程统计
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="p-4">
+                <div className="text-3xl font-bold text-[#4299e1]">200+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">练习题</div>
+              </div>
+              <div className="p-4">
+                <div className="text-3xl font-bold text-[#ed8936]">6</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">实战项目</div>
+              </div>
+              <div className="p-4">
+                <div className="text-3xl font-bold text-[#48bb78]">120+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">知识点</div>
+              </div>
+              <div className="p-4">
+                <div className="text-3xl font-bold text-[#9f7aea]">50+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">学时</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 修改 2：学习社区与答疑 */}
+      <section className="py-16 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-[#1a365d] to-[#2c5282] rounded-xl p-8 shadow-lg text-white">
+            <h2 className="text-2xl font-bold text-center mb-4">
+              💬 学习交流与答疑
+            </h2>
+            <p className="text-center text-blue-100 mb-6">
+              学习中遇到困惑？欢迎加入我们的学习社区（筹备中）。届时你将获得：
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <div className="bg-white/10 rounded-lg p-4 text-center backdrop-blur-sm">
+                <div className="text-3xl mb-2">❓</div>
+                <div className="font-semibold text-sm">答疑解惑</div>
+                <div className="text-xs text-blue-200 mt-1">遇到问题及时解答</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4 text-center backdrop-blur-sm">
+                <div className="text-3xl mb-2">💡</div>
+                <div className="font-semibold text-sm">项目讨论</div>
+                <div className="text-xs text-blue-200 mt-1">交流实战经验</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-4 text-center backdrop-blur-sm">
+                <div className="text-3xl mb-2">🤝</div>
+                <div className="font-semibold text-sm">学习伙伴</div>
+                <div className="text-xs text-blue-200 mt-1">结识志同道合的朋友</div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button
+                onClick={() => alert('功能即将开放，请关注后续更新')}
+                title="即将开放"
+                className="px-8 py-3 bg-[#ed8936] hover:bg-[#dd6b20] text-white rounded-lg font-semibold transition-colors shadow-md"
+                style={{ cursor: 'pointer' }}
+              >
+                📢 开放时通知我
+              </button>
+              <div className="mt-3 text-xs text-blue-200">
+                或发送邮件至：<a href="mailto:contact@pydata-edu.com" className="underline hover:text-[#ed8936]">contact@pydata-edu.com</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

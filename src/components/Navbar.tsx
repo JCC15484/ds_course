@@ -14,7 +14,8 @@ const Navbar = () => {
     { name: '课程学习', path: '/courses' },
     { name: '练习题库', path: '/practice' },
     { name: '实战案例', path: '/projects' },
-    { name: '学习路线', path: '/learning-path' },
+    { name: '学习中心', path: '/learning-center' },
+    { name: '学习社区', path: '/community' },
     { name: '个人中心', path: '/profile' },
   ];
 

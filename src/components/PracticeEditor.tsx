@@ -167,7 +167,7 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
     }
   }, []);
 
-  // 核心代码执行逻辑 - 更稳健的实现
+  // 核心代码执行逻辑 - 稳健、简洁的实现
   const executeCode = async (userCode: string): Promise<{ stdout: string; stderr: string; error: string | null }> => {
     const pyodide = pyodideRef.current;
     if (!pyodide) {
@@ -180,18 +180,22 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
 
     try {
       // 使用 setStdout / setStderr 回调 - 更稳健的方式
-      const stdoutCallback = (text: string) => {
-        capturedStdout += text;
-      };
-      const stderrCallback = (text: string) => {
-        capturedStderr += text;
-      };
+      const stdoutCallback = (text: string) => { capturedStdout += text; };
+      const stderrCallback = (text: string) => { capturedStderr += text; };
 
-      // 设置 stdout 回调
       pyodide.setStdout({ batched: (s: string) => stdoutCallback(s) });
       pyodide.setStderr({ batched: (s: string) => stderrCallback(s) });
 
-      // 执行用户代码
+      // 确保常用库已加载到全局命名空间
+      // 这样用户写 `pd.read_csv(...)` 时不需要自己 import
+      try {
+        await pyodide.runPythonAsync('import pandas as pd; import numpy as np');
+      } catch (e) {
+        // 如果 pandas/numpy 不可用，忽略这个步骤，用户仍需自己 import
+        console.warn('pandas/numpy preload skipped:', e);
+      }
+
+      // 直接执行用户代码
       await pyodide.runPythonAsync(userCode);
 
       // 恢复默认输出
@@ -208,17 +212,28 @@ const PracticeEditor: React.FC<PracticeEditorProps> = ({
       } catch (e) {
         // ignore
       }
-      
+
       // 改进错误信息显示
       let errorMsg = err?.message || String(err);
-      
+
       // 清理 Python 错误信息中的特殊字符和冗余内容
       errorMsg = errorMsg
-        .replace(/File "<exec>", /g, '')
+        .replace(/File "<exec>",\s*/g, '')
         .replace(/File ".*?", line (\d+)/g, '第$1行')
-        .replace(/\n\n/g, '\n')
+        .replace(/^\s*\d+\s*\|.*$/gm, '')  // 移除上下文代码行
+        .replace(/\n\s*\n/g, '\n')
+        .replace(/\n\n+/g, '\n')
         .trim();
-      
+
+      // 如果清理后信息太少，尝试保留原始 traceback 的最后几行
+      if (!errorMsg || errorMsg.length < 10) {
+        errorMsg = (err?.message || String(err))
+          .split('\n')
+          .filter(l => l.trim())
+          .slice(-2)
+          .join('\n') || '执行错误，请检查代码语法';
+      }
+
       execError = errorMsg;
     }
 

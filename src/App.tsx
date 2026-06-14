@@ -12,6 +12,10 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
+import Community from './pages/Community';
+import PandasTraining from './pages/PandasTraining';
+import LearningCenter from './pages/LearningCenter';
+import SqlLearning from './pages/SqlLearning';
 
 function App() {
   return (
@@ -32,6 +36,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/pandas-training" element={<PandasTraining />} />
+            <Route path="/learning-center" element={<LearningCenter />} />
+            <Route path="/sql-learning" element={<SqlLearning />} />
           </Routes>
         </main>
         <Footer />
